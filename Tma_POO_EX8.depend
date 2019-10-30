@@ -1,11 +1,15 @@
 # depslib dependency file v1.0
-1572372510 source:f:\codeblocks\tma_poo_ex8\main.cpp
+1572454025 source:f:\codeblocks\tma_poo_ex8\main.cpp
 	<iostream>
 	"Coada.h"
 
-1572367463 f:\codeblocks\tma_poo_ex8\coada.h
+1572454232 f:\codeblocks\tma_poo_ex8\coada.h
 	<iostream>
 	"Nod.h"
 
-1572367422 f:\codeblocks\tma_poo_ex8\nod.h
+1572454213 f:\codeblocks\tma_poo_ex8\nod.h
+	"Coada.h"
+
+1572454025 source:f:\codeblocks\tma_poo_ex8\coada.cpp
+	"Coada.h"
 

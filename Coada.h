@@ -1,4 +1,5 @@
-
+#ifndef COADA_H
+#define COADA_H
 #include <iostream>
 #include "Nod.h"
 
@@ -22,7 +23,6 @@ public:
 
     friend ostream& operator<<(ostream&,Coada&);
     friend istream& operator>>(istream&,Coada&);
-
-
 };
+#endif // COADA_H
 

@@ -1,206 +1,66 @@
 #include <iostream>
 #include "Coada.h"
-//#include <string.h>
 
 using namespace std;
 
 void AfisMenu()
 {
     cout<<"\nLista optiuni: \n";
-    cout<<"1 - Adaugati in coada \n";
-    cout<<"2 - Scoateti din coada \n";
-    cout<<"3 - Verificati daca coada este goala \n";
-    cout<<"4 - Afisare continut coada ";
-    cout<<"\n5 - Iesire \n\n";
+    cout<<"1 - Cititi coada de caractere \n";
+    cout<<"2 - Adaugati in coada \n";
+    cout<<"3 - Scoateti din coada \n";
+    cout<<"4 - Verificati daca coada este goala \n";
+    cout<<"5 - Afisare continut coada \n";
+    cout<<"6 - Concatenati 2 cozi \n";
+    cout<<"7 - Aplicati operatia \"-\" pentru 2 cozi";
+    cout<<"\n8 - Iesire \n\n";
 }
-
 
 Coada* Citire(int n)
 {
     Coada *v;
-    char aux;
+   // char aux;
     v = new Coada[n];
 
     for(int i=0;i<n;i++)
     {
         int num_of_ele;
 
-        cout<<"Cititi cate elemente are coada: \n";
+        cout<<"Cititi cate elemente are coada "<<i<<" : ";
         cin>>num_of_ele;
+        cout<<"\nCititi caracterele: \n";
         while(num_of_ele)
         {
-             cin>>aux;
-             v[i].push(aux);
+
+             /*cin>>aux;
+             v[i].push(aux);*/
+             cin>>v[i];
              num_of_ele--;
         }
 
         v[i].afis();
         cout<<endl;
     }
-
-
-
     return v;
-
-
-
-}
-
-
-
-Coada  Coada::operator+( Coada &aux)
-    {
-        Coada c;
-        char auy;
-        while(this->isempty() ==0)
-        {
-            this->pop(auy);
-
-            c.push(auy);
-        }
-        while(aux.isempty()==0)
-            {
-                aux.pop(auy);
-
-                c.push(auy);
-            }
-        return c;
-    }
-
-
-
-    Coada Coada::operator-(Coada &aux)
-    {
-        Coada c;
-        char temp1,temp2;
-        while(this->isempty() == 0 || aux.isempty() == 0)
-        {
-            this->pop(temp1);
-            aux.pop(temp2);
-            if(temp1 > temp2)
-                c.push(temp1);
-            else c.push(temp2);
-        }
-
-        return c;
-    }
-
-istream& operator>>(istream& in,Coada& x)
-{
-    char aux;
-    cout<<"Introduceti valoarea: ";
-    in>>aux;
-    x.push(aux);
-    return in;
-
-}
-
-ostream&operator<<(ostream& out,Coada& x)
-{
-    char aux;
-    while(x.prim!= NULL)
-    {
-        out<<x.prim->info<<" ";
-        x.pop(aux);
-
-
-    }
-    return out;
-}
-Coada::Coada()
-{
-    prim=ultim=NULL;
-
-}
-Coada::~Coada()
-{
-
-    while(prim!=NULL)
-    {
-        Nod* nou = prim;
-        prim=prim->urm;
-        delete nou;
-
-    }
-}
-
-void Coada::push(char val)
-{
-    Nod* nou = new Nod;
-    //cout<<"\nIntroduceti valoarea: ";
-  // cin>>nou->info;
-   nou->info = val;
-    nou->urm = NULL;
-    if(ultim == NULL)
-    {
-
-        prim=nou;
-        ultim=nou;
-    }
-    else
-    {
-        ultim->urm = nou;
-        ultim = nou;
-    }
-
-}
-
-void Coada::pop(char &aux)
-{
-    if(prim==NULL)
-    {
-        cout<<"Actiune nepermisa";
-        return;
-    }
-    else
-    {
-
-        Nod* nou = prim;
-        aux=prim->info;
-        //cout<<prim->info<<" a fost sters \n";
-        prim=prim->urm;
-        delete nou;
-
-        if(prim==NULL)
-            ultim=NULL;
-    }
-
-}
-
-void Coada::afis()
-{
-    Nod* nou = prim;
-    while(nou != NULL)
-    {
-        cout<<nou->info<<" ";
-        nou=nou->urm;
-    }
-}
-
-int Coada::isempty()
-{
-    if(prim==NULL)
-    {
-        //cout<<"\nCoada este goala\n";
-        return 1;
-    }
-   // cout<<"\nCoada contine elemente\n";
-    return 0;
 }
 
 
 
 int main()
 {
-    Coada *v;
-    int n = 3;
+    int OK = 1;
+    int nr_cozi,nr_cozi_concat = 0;
+    int i,j;
+    char val_char;
+    Coada *v, w,u;
 
+    /*
    v = Citire(n);
 
     v[1].afis();
 
 
-    /*
+
     Coada A, B,C;
     int OK = 1;
     char aux,auy;
@@ -223,7 +83,7 @@ int main()
     C.afis();
 
     cout<<"\n "<<auy<<endl;
-/*
+*/
     while(OK)
     {
         AfisMenu();
@@ -233,27 +93,66 @@ int main()
         switch(opt)
         {
         case 1:
-            //cin>>aux;
-            //A.push(aux);
-            cin>>A;
+            cout<<"Dati numarul de cozi: ";
+            cin>>nr_cozi;
+            cout<<endl;
+             v = Citire(nr_cozi);
             break;
         case 2:
-            A.pop(aux);
+            cout<<"\nSelecati coada in care doriti sa adaugati: ";
+            cin>>i;
+            cout<<"\nIntroduceti caracterul pe care doriti sa-l adaugati: ";
+            cin>>val_char;
+            v[i].push(val_char);
             break;
         case 3:
-            A.isempty();
+            cout<<"\nSelecati coada din care doriti sa stergeti: ";
+            cin>>i;
+            v[i].pop(val_char);
             break;
         case 4:
-            A.afis();
+            cout<<"\nSelecati coada pe care doriti sa o verificati daca este goala: ";
+            cin>>i;
+            if(v[i].isempty())
+                cout<<"\nCoada selectata este goala\n";
+            else
+                cout<<"\nCoada contine elemente \n";
             break;
         case 5:
+            cout<<"\n1 - Coada citita \n2 - Coada obtiunuta prin concatenare \n3 - Coada optinuta prin operatia \"-\" \n";
+            cin>>j;
+
+            if(j == 1)
+            {
+                cout<<"\nSelecati coada pe care doriti sa o afisati: ";
+                cin>>i;
+                v[i].afis();
+            }
+
+
+            else if(j == 2)
+                w.afis();
+            else if(j == 3)
+                u.afis();
+            break;
+        case 6:
+            cout<<"\nSelectati cozile pe care doriti sa le concatenati: ";
+            cin>>i>>j;
+            w= v[i] + v[j];
+            break;
+        case 7:
+            cout<<"\nSelecati cozile: \n";
+            cin>>i>>j;
+            u = v[i] - v[j];
+            break;
+        case 8:
             OK = 0;
-            return 1;
+            break;
         default:
             cout<<"\n\nOptiune nepermisa !";
         }
     }
 
-*/
+
     return 0;
 }
