@@ -1,11 +1,5 @@
 #include "Coada.h"
 
-
-
-
-
-
-
 Coada  Coada::operator+( Coada &aux)
     {
         Coada c;

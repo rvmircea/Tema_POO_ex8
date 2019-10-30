@@ -49,41 +49,11 @@ Coada* Citire(int n)
 int main()
 {
     int OK = 1;
-    int nr_cozi,nr_cozi_concat = 0;
+    int nr_cozi;
     int i,j;
     char val_char;
     Coada *v, w,u;
 
-    /*
-   v = Citire(n);
-
-    v[1].afis();
-
-
-
-    Coada A, B,C;
-    int OK = 1;
-    char aux,auy;
-    cout<<"introduceti valoare: ";
-    cin>>aux;
-    A.push(aux);
-    cout<<"\nintroduceti valoare: ";
-    cin>>aux;
-    A.push(aux);
-
-    cout<<"introduceti valoare: ";
-    cin>>aux;
-    B.push(aux);
-    cout<<"introduceti valoare: ";
-    cin>>aux;
-    B.push(aux);
-
-    C=A-B;
-
-    C.afis();
-
-    cout<<"\n "<<auy<<endl;
-*/
     while(OK)
     {
         AfisMenu();
@@ -128,8 +98,6 @@ int main()
                 cin>>i;
                 v[i].afis();
             }
-
-
             else if(j == 2)
                 w.afis();
             else if(j == 3)
